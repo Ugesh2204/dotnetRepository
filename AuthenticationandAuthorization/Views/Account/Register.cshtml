@@ -1,0 +1,19 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+
+<form asp-controller="Account" asp-action="Register" method="post">
+    UserName : <input type="text" asp-for="UserName" /> <br />
+    First Name : <input type="text" asp-for="FirstName" /> <br />
+    Last Name : <input type="text" asp-for="LastName" /> <br />
+    Email : <input type="email" asp-for="Email" /> <br />
+    Password : <input type="password" asp-for="Password" /> <br />
+    Confirm Password : <input type="password" asp-for="ConfirmPassword" /> <br />
+    <input type="submit" value="Register" />
+</form>
+
+
+<h6>@ViewBag.Msg</h6>

@@ -1,0 +1,53 @@
+﻿@model List<Subcription>
+@{
+    ViewData["Title"] = "UserSubcriptionDetails";
+}
+
+<h1>UserSubcriptionDetails</h1>
+
+<table border="1">
+    <tr>
+       <td>Memberhip</td>
+        <td>Payment</td>
+        <td>Start Date</td>
+        <td>Expires On</td>
+        <td>Status</td>
+        <td>Action</td>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MembershipName</td>
+                <td>@item.Amount</td>
+                <td>@item.StartDate.ToShortDateString()</td>
+                <td>
+                    @if(item.ExpireDate == null)
+                    {
+                    <p>-</p>
+                    }
+                    else
+                    {
+                         @item.ExpireDate    
+                    }
+                    
+
+                </td>
+
+                <td>
+                    @if (item.Status == false)
+                    {
+                        <p>Pending</p>
+                    }
+                    else
+                    {
+                        <p>Payment Completed</p>
+                    }
+                </td>
+
+                <td>Action</td>
+
+            </tr>
+        }
+        </tbody>
+</table>

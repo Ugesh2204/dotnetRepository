@@ -1,0 +1,84 @@
+﻿
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html{
+    height: 100%;
+    margin: 0;
+}
+
+/*https://codepen.io/skpaul/pen/GgxjrV*/
+
+
+body {
+    background-color: #ccc;
+    min-height: 100%;
+}
+
+.wrapper {
+    background-color: #F9F6F4;
+    height: 100vh !important;
+    
+}
+
+.inner-wrapper {
+    padding: 1rem;
+    background-color: #fff;
+    height: 100vh !important;
+}
+
+
+.nav-color {
+    background-color: #495F75;
+}
+    .nav-color th {
+        color: #F9F6F4;
+    }
+a {
+    color: #C2F1DB !important;
+  
+}
+
+.m-btn {
+    background-color: #B44956;
+    color: #F9F6F4;
+}
+
+.m-btn-color {
+    color: #F9F6F4;
+}
+
+.dropdown-menu a {
+    color:#333 !important;
+}
+h5 {
+    color: #B44956;
+}
+
+.icon-color {
+    color: #495F75;
+}
+
+
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #495F75;
+    text-align: center;
+}
+.footer p {
+    color: #C2F1DB;
+}
+
+/*Island Green (#2BAE66FF) and White (#FCF6F5FF)*/
+
+/*select::-ms-expand {
+    display: none !important;
+}*/

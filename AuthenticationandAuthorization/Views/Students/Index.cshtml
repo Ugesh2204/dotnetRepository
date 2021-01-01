@@ -1,0 +1,52 @@
+﻿@model IEnumerable<AuthenticationandAuthorization.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+    //var ImageUrl = "~/Images/" + Model.IEnumerable<Student>.PhotoPath ?? "noimage.jpg");
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+
+    
+    var Photopath = "~/Images/" + (item.ImageUrl ?? "noimage.png");
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+               <img style="width:100px; height:100px; object-fit: cover;"src="@Photopath" asp-append-version="true"/>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.studentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.studentId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.studentId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

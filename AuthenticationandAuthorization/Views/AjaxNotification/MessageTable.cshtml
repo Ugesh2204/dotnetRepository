@@ -1,0 +1,56 @@
+﻿@model List<Message>
+
+@{
+    ViewData["Title"] = "MessageTable";
+}
+
+<h1>MessageTable</h1>
+<div class="container">
+    <div id="msglist">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Message Title</td>
+                    <td>Message Body</td>
+                    <td>To</td>
+                    <td>Status</td>
+                    <td>url</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.FromUserName</td>
+                        <td>@item.MessageHeader</td>
+                        <td>@item.MessageBody</td>
+                        <td>@item.ToUserName</td>
+                        <td>@item.Comment_status</td>
+                        <td>@item.Url</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.MessageId">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.MessageId">Delete</a> |
+                            @*Ajax link*@
+                            <a asp-action="AjaxDelete" asp-controller="AjaxNotification"
+                            data-ajax="true"
+                            data-ajax-method="GET"
+                            data-ajax-mode="replace"
+                            data-ajax-url="AjaxNotification/AjaxDelete?id=@item.MessageId"
+                  
+                               data-ajax-update="#msglist">
+                            Ajax Delete
+                            </a>
+
+                            <a asp-action="Index">Back to List</a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

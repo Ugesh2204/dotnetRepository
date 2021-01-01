@@ -1,0 +1,39 @@
+﻿@model List<Message>
+
+
+<h1>MessageTable</h1>
+<div class="container">
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Message Title</td>
+                <td>Message Body</td>
+                <td>To</td>
+                <td>Status</td>
+                <td>url</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FromUserName</td>
+                    <td>@item.MessageHeader</td>
+                    <td>@item.MessageBody</td>
+                    <td>@item.ToUserName</td>
+                    <td>@item.Comment_status</td>
+                    <td>@item.Url</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="">Edit</a> |
+                        <a asp-action="Index">Back to List</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

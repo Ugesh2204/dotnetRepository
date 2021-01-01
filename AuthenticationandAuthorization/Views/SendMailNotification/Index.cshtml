@@ -1,0 +1,122 @@
+﻿@model IEnumerable<AuthenticationandAuthorization.Models.Subcription>
+
+@{
+    ViewData["Title"] = "Index";
+
+
+    var today = DateTime.Now;
+}
+
+<div class="container">
+    <h1>List of Users Membership</h1>
+
+    <form method="get" asp-action="Index" asp-controller="SendMailNotification">
+
+        <p>
+
+            @*<input type="search" placeholder="enter value" value="@ViewData["GetUserdetails"]" name="Usersearch" style="width:300px;" />*@
+            <select class="form-control" id="Usersearch" name="Usersearch" style="width:300px;">
+                
+                <option>5 days to Expire</option>
+                <option>15 days to Expire</option>
+                <option>30 days to Expire</option>
+                <option>Platinum</option>
+                 <option>Gold</option>
+            </select>
+            <input type="submit" value="Search" class="btn btn-primary" />
+            <a asp-action="Index">Get All Members</a>
+        </p>
+
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <td>USERNAME</td>
+                <td>Email</td>
+                <td>Subscriptions</td>
+                <td>Start Date</td>
+                <td>Expiry Date</td>
+                <td>Status</td>
+                <td>Test</td>
+            </tr>
+
+
+        </thead>
+        <tbody>
+            @*displya no record found*@
+
+            @if (Model.Count() == 0)
+            {
+                <h2> No Record found</h2>
+            }
+            else
+            {
+
+
+
+                @foreach (var item in Model)
+                {
+
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MembershipName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ExpireDate)
+                        </td>
+
+
+
+                        <td>
+                            @if (@item.Status == true)
+                            {
+                                <P>Active</P>
+                            }
+
+                            else
+                            {
+                                <p>Expired</p>
+                            }
+
+                        </td>
+                        <td>
+                            @if (item.ExpireDate > today)
+                            {
+                                <P>Active</P>
+                            }
+                            else
+                            {
+                                <p>Expired</p>
+                            }
+                        </td>
+
+
+
+
+
+
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.SubId">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.SubId">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.SubId">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+</div>

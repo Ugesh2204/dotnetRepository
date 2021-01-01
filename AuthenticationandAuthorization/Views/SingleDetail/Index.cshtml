@@ -1,0 +1,45 @@
+﻿@model SingleDetails
+
+@{
+    ViewData["Title"] = "Index";
+    var Photopath = "~/Images/" + Model.ImagePhoto ?? "noimage.jpg";
+
+}
+
+<h1>Index</h1>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ApplicationUserId">Edit</a> |
+   
+</div>
+
+
+<p>
+   <img style="width:100px; height:100px; object-fit: cover;" src="@Photopath" asp-append-version="true" />
+</p>
+
+<p>
+    @Html.DisplayFor(model => model.ApplicationUser.UserName)
+</p>
+
+<p>
+    @Html.DisplayFor(model => model.ApplicationUser.Email)
+</p>
+
+
+
+<hr />
+
+
+<p>
+    @Html.DisplayFor(model => model.ApplicationUserId)
+</p>
+
+
+<p>
+    @Html.DisplayFor(model => model.UserName)
+</p>
+
+<p>
+    @Html.DisplayFor(model => model.ImagePhoto)
+</p>

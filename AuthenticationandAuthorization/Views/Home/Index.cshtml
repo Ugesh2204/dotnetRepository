@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Home</h1>
+
+<div class="row">
+    <div class="col-md-2">
+        Message
+    </div>
+    <div class="col-md-4">
+        <input type="text" id="messageInput" />
+    </div>
+</div>
+
+<div class="row">
+    &nbsp;
+</div>
+<div class="row">
+    <div class="col-6">
+        <input type="button" id="sendButton" value="Send Message"/>
+    </div>
+</div>
+
+
+<div>
+    <ul id="weather"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+    $(function () {
+        ////creating connection variable to our weatherhub
+        var connection = new signalR.HubConnectionBuilder()
+            .withUrl("/weatherHub")
+            .build();
+
+        ////setup a brocastevent
+        connection.on("Broadcast", function (message) {
+            $("#weather").append("<li>" + message + "</li>");
+        });
+
+        ////catch function if something goes wrong
+
+        connection.start().catch(function (err) {
+            return console.error(err.toString());
+        });
+
+    });
+
+   
+
+</script>
+
+<script>
+    $(function () {
+        var connection = new signalR.HubConnectionBuilder()
+            .withUrl("/weatherHub")
+            .build();
+        //here we use then to send message
+        connection.start().then(function () {
+            document.getElementById("sendButton").onclick = function () {
+                var message = document.getElementById("messageInput").value;
+                //Remember if we are sending a message from the client 
+                //to the server using our signalrhub we need to call invoke method
+                //alert(message);
+                connection.invoke("BroadcastFromClient", message)
+                    .catch(function (err) {
+                        return console.error(err.toString());
+                    });
+            }
+
+        })
+    });
+</script>

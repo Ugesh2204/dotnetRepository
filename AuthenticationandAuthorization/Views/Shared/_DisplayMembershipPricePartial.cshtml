@@ -1,0 +1,12 @@
+﻿@model Membership_Price
+
+
+
+@if (ViewBag.MpriceList != null)
+{
+    foreach (var item in ViewBag.MpriceList)
+    {
+        <option value="@item.Value">@item.Text</option>
+    
+    }
+}

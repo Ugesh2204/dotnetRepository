@@ -1,0 +1,10 @@
+﻿@model SingleDetails
+
+@{
+    var Photopath = "~/Images/" + (Model.ImagePhoto ?? "noimage.png");
+}
+
+
+
+
+<img src="@Url.Action("Photo", "SingleDetail" , new {id = Model.ApplicationUserId})" />

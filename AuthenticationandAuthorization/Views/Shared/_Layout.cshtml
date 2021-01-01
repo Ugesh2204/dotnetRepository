@@ -1,0 +1,336 @@
+﻿
+@{
+    Layout = null;
+
+    //var Photopath = "~/Images/" + (Model.ImagePhoto ?? "noimage.png");
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_Layout</title>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/popper.js/dist/umd/popper.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/Messagenotification.js"></script>
+    <script src="~/js/chat.js"></script>
+
+
+
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+
+    <link href="~/lib/FontAwsome/css/all.css" rel="stylesheet" />
+    <link href="~/lib/Custom/custom.css" rel="stylesheet" />
+    <link href="~/css/Noti.css" rel="stylesheet" />
+
+
+
+</head>
+<body>
+    <header>
+
+
+
+        <nav class="navbar navbar-expand-lg nav-color">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" aria-expanded="false" aria-controls="navbarColor01" aria-label="Toggle navigation" type="button" data-target="#navbarColor01" data-toggle="collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto nav nav-pills">
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="NotificationMessage" asp-action="Index">Notification</a>
+                    </li>
+
+
+
+
+                    @*<li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>*@
+
+
+
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        if (User.IsInRole("User") || User.IsInRole("Admin"))
+                        {
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Students" asp-action="Index">Students</a>
+                            </li>
+
+                        }
+
+
+
+                        if (User.IsInRole("Admin") || User.IsInRole("Super Admin"))
+                        {
+                            <li class="nav-item dropdown show">
+                                <div class="dropdown">
+                                    <a class=" nav-link dropdown-toggle" data-toggle="dropdown">
+                                        Manage
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" asp-controller="AccountManager" asp-action="AssignRole">Roles</a>
+                                        <a class="dropdown-item" asp-controller="Membership" asp-action="index">Membership</a>
+                                        <a class="dropdown-item" href="#">Link 2</a>
+                                        <a class="dropdown-item" href="#">Link 3</a>
+                                    </div>
+                                </div>
+                            </li>
+
+
+
+                        }
+                        @*<li class="nav-item">
+
+                                <a class="nav-link" asp-controller="Userprofile" asp-action="Index">User profile</a>
+                            </li>*@
+                        <li class="nav-item">
+
+                            <a class="nav-link" asp-controller="UserSubcription" asp-action="Index">Add Subcription</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="SingleDetail" asp-action="Index">User Detail</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="SendMail" asp-action="Index">Send Email</a>
+
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Chat" asp-action="Index">Chat</a>
+                        </li>
+
+
+
+
+
+
+
+
+
+                    }
+
+
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Account" asp-action="Login">LogIn</a>
+                        </li>
+
+
+                    }
+
+                    else
+                    {
+                        //if is  Authenticc user
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Services" asp-action="Index">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Account" asp-action="Logout">LogOut</a>
+                        </li>
+
+                        <li class="nav-item">
+
+                            <div class="dropdown">
+                                <a id="dLabel" class="notification-icon" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
+                                    <i class="fas fa-bell"></i>
+                                    <span class="badge d-flex justify-content-center align-items-center">
+                                        <span class="bagde-number">10</span>
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+                                    <li class="notification-heading">
+                                        <h4 class="menu-title">Notifications</h4>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li class="notifications-wrapper">
+                                        @*<a class="content" href="#">
+                                                <div class="notification-item">
+                                                    <h4 class="item-title">Evaluation Deadline 1 · day ago</h4>
+                                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                                </div>
+                                            </a>*@
+                                        @*<a class="content" href="#">
+                                                <div class="notification-item">
+                                                    <h4 class="item-title">Evaluation Deadline 1 · day ago</h4>
+                                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                                </div>
+                                            </a>*@
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+
+
+                    }
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <span class=" nav-link form-inline my-2 my-lg-0"> I am @User.Identity.Name  </span>
+                        </li>
+
+
+                    }
+
+
+
+
+
+                </ul>
+                @*<form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </form>*@
+
+
+
+            </div>
+        </nav>
+
+    </header>
+    <section>@RenderBody()</section>
+
+
+    <div class="footer">
+        <p>Footer</p>
+    </div>
+
+
+
+
+    
+
+
+
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-messaging.js"></script>
+   
+
+
+    <script>
+        $(function () {
+
+            var token = null;
+            var Config = {
+                apiKey: "AIzaSyDdQ8aUHf21RkOw2_j3klUAlpRnn_lKmwg",
+                authDomain: "gympro-mvc.firebaseapp.com",
+                databaseURL: "https://gympro-mvc.firebaseio.com",
+                projectId: "gympro-mvc",
+                storageBucket: "gympro-mvc.appspot.com",
+                messagingSenderId: "699129766939",
+                appId: "1:699129766939:web:8ac9e5f9cf9ca703b144be",
+                measurementId: "G-0X8WJX8V89"
+            };
+
+            // Initialize Firebase
+            firebase.initializeApp(Config);
+            //2
+            // Retrieve Firebase Messaging object.
+            const messaging = firebase.messaging();
+
+            messaging.requestPermission()
+                .then(function () {
+                    console.log("granted");
+                    if (isTokenSentToServer()) {
+                        console.log("already granted");
+                    } else {
+                        getRegtoken();
+                    }
+                });
+
+            function getRegtoken() {
+                messaging.getToken().then((currentToken) => {
+
+                    if (currentToken) {
+                        console.log(currentToken);
+                        setTokenSentToServer(true);
+                        saveToken(currentToken)
+                        // updateUOForPushEnabled(currentToken);
+                    } else {
+                        console.log('No instance ID TOKEN AVAILABLE, Request permission to generate one.');
+                        setTokenSentToServer(false);
+                    }
+
+                }).catch((err) => {
+                    console.log('An error occurred while retrieving token.', err);
+                    setTokenSentToServer(false);
+
+                });
+
+            }
+            function setTokenSentToServer(sent) {
+                window.localStorage.setItem('sentToserver', sent ? 1 : 0);
+            }
+
+            function isTokenSentToServer() {
+                return window.localStorage.getItem('sentToServer') === '1';
+            }
+
+
+            messaging.onMessage(function (payload) {
+                console.log('Message received.', payload);
+
+                notificationTitle = payload.data.title;
+                notifications = {
+                    body: payload.data.body,
+                    icon: payload.data.icon
+                };
+            });
+
+
+
+
+        });
+
+    </script>
+
+
+
+
+    <script>
+        //$(document).on('click', '.nav-link', function () {
+        //        $(".nav-item").find(".active").removeClass("active");
+        //});
+
+        //$(document).ready(function () {
+        //    $('a[href="' + location.pathname + '"]').closest('.nav-item').addClass('active');
+        //});
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿@model ApplicationUser
+@{
+    ViewData["Title"] = "Index";
+    var Photopath = "~/Images/" + (Model.ImageUrl ?? "noimage.png");
+
+}
+
+<h1>User Detail</h1>
+
+<a asp-controller="UserProfile" asp-action="Edit">Edit</a> <br />
+
+<p>
+    <img style="width:100px; height:100px; object-fit: cover;" src="@Photopath" asp-append-version="true" />
+</p>
+
+<p>
+    @Html.DisplayFor(model => model.UserName)
+</p>
+<p>
+    @Html.DisplayNameFor(model => model.UserName)
+</p>
+<p>
+    @Html.DisplayFor(model => model.UserName)
+</p>
+<p>
+    @Html.DisplayFor(model => model.FirstName)
+</p>
+
+<p>
+    @Html.DisplayFor(model => model.LastName)
+</p>
+
+<p>
+    @Html.DisplayFor(model => model.DateOfBirth)
+</p>
+
+<p>
+    @Html.DisplayFor(model => model.Gender)
+</p>

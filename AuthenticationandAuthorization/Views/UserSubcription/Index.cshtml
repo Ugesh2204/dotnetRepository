@@ -1,0 +1,65 @@
+﻿@model SubcriptionViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="wrapper">
+    <div class="container">
+        <div class="inner-wrapper ">
+            <h1>Add Subcription</h1>
+            <div class="row">
+                <div class="col-md-6">
+
+                    <form  asp-action="AddSubcription" asp-controller="UserSubcription" method="post">
+                        <div class="form-group">
+                            <label >Membership Name</label>
+
+                            @{
+                                @if (ViewBag.MembershipList != null)
+                                {
+                                    //Just bindind the membershipt type into this form
+                                    @Html.DropDownListFor(x => x.MembershipId, ViewBag.MembershipList as SelectList, "Select Membership type", new { @class = "form-control" })
+                                }
+                            }
+                        </div>
+                        <div class="form-group">
+                            <label>Price</label>
+
+                            @Html.DropDownListFor(x => x.PriceId, new SelectList(""), "", new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <label >Joining Date</label>
+                           <input type="date" id="Date" name="Date" class="form-control">
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        //when i select the memshipid  i want to display price
+        $("#MembershipId").change(function () {
+            var membershipId = $(this).val();
+            //debugger
+            $.ajax({
+                type: "post",
+                url: "/UserSubcription/GetMPriceList?Mid=" + membershipId,
+                contentType: "html",
+                success: function (response) {
+                   // debugger
+                    //Once the user select the member type change the state of price
+                    $("#PriceId").empty();
+                    $("#PriceId").append(response);
+                }
+            })
+        })
+    })
+</script>

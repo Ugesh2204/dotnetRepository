@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewData["Title"] = "Chat Room";
+}
+
+<link href="~/css/chat.css" rel="stylesheet" />
+
+
+
+<div class="container">
+
+
+
+    <div class="text-center">
+        <h1 class="display-4">Chat Room</h1>
+    </div>
+
+    <div class="row rounded-lg overflow-hidden shadow">
+        <div class="col-5 px-0">
+            <div class="bg-white">
+                <div class="bg-gray px-4 py-2 bg-light">
+                    <p class="h5 mb-0 py-1">Connections</p>
+                </div>
+
+
+                @*we will append users here*@
+                <div class="messages-box">
+                    <div id="chatUsers" class="list-group rounded-0"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-7 px-0">
+            @*we will append messages here*@
+            <div id="chatRoom" class="px-4 py-5 chat-box bg-white">
+
+            </div>
+
+            @*Type message  here*@
+            <div class="input-group position-absolute">
+                <input id="messageInput" type="text" placeholder="Typea a message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light" />
+                <div class="input-group-append">
+                    <button id="sendButton" type="button" class="btn btn-link"><i class="fa fa-paper-plane"></i></button>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
