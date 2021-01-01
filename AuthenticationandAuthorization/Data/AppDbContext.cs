@@ -32,6 +32,9 @@ namespace AuthenticationandAuthorization.Data
         public DbSet<Membership_Price> Membership_Prices { get; set; }
         public DbSet<Subcription> Subcriptions { get; set; }
 
+        public DbSet<Notification>Notifications { get; set; }
+        public DbSet<NotificationApplicationUser>UserNotifications { get; set; }
+
         //a application user have 1 or more messages
         public DbSet<Message>Messages { get; set; }
 

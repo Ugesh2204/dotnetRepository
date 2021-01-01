@@ -155,7 +155,7 @@ namespace AuthenticationandAuthorization.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Notification");
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("AuthenticationandAuthorization.Models.NotificationApplicationUser", b =>
@@ -176,7 +176,7 @@ namespace AuthenticationandAuthorization.Migrations
 
                     b.HasIndex("NotificationId1");
 
-                    b.ToTable("NotificationApplicationUser");
+                    b.ToTable("UserNotifications");
                 });
 
             modelBuilder.Entity("AuthenticationandAuthorization.Models.Photo", b =>
@@ -426,7 +426,7 @@ namespace AuthenticationandAuthorization.Migrations
                         .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("AuthenticationandAuthorization.Models.Notification", "Notification")
-                        .WithMany()
+                        .WithMany("NotificationApplicationUsers")
                         .HasForeignKey("NotificationId1")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
