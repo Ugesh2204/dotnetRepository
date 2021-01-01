@@ -145,6 +145,40 @@ namespace AuthenticationandAuthorization.Migrations
                     b.ToTable("Messages");
                 });
 
+            modelBuilder.Entity("AuthenticationandAuthorization.Models.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Notification");
+                });
+
+            modelBuilder.Entity("AuthenticationandAuthorization.Models.NotificationApplicationUser", b =>
+                {
+                    b.Property<int>("NotificationId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<bool>("IsRead");
+
+                    b.Property<int>("NotificationId1");
+
+                    b.HasKey("NotificationId");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("NotificationId1");
+
+                    b.ToTable("NotificationApplicationUser");
+                });
+
             modelBuilder.Entity("AuthenticationandAuthorization.Models.Photo", b =>
                 {
                     b.Property<int>("Id")
@@ -383,6 +417,18 @@ namespace AuthenticationandAuthorization.Migrations
                     b.HasOne("AuthenticationandAuthorization.Models.ApplicationUser", "FromUser")
                         .WithMany("Messages")
                         .HasForeignKey("FromUserId");
+                });
+
+            modelBuilder.Entity("AuthenticationandAuthorization.Models.NotificationApplicationUser", b =>
+                {
+                    b.HasOne("AuthenticationandAuthorization.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("NotificationApplicationUsers")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("AuthenticationandAuthorization.Models.Notification", "Notification")
+                        .WithMany()
+                        .HasForeignKey("NotificationId1")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("AuthenticationandAuthorization.Models.SingleDetails", b =>

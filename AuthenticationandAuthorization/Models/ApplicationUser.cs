@@ -24,7 +24,9 @@ namespace AuthenticationandAuthorization.Models
 
         //Chatuser wil a  collection of messages
         public virtual ICollection<Message> Messages { get; set; }
-    
+
+        public List<NotificationApplicationUser> NotificationApplicationUsers { get; set; }
+
     }
 
     public enum Gender
