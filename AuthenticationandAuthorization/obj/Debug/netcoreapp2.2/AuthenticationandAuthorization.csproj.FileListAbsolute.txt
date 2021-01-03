@@ -64,3 +64,6 @@ C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\Authentication
 C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\obj\Debug\netcoreapp2.2\Razor\Views\AjaxNotification\pv_MessageTable.g.cshtml.cs
 C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\obj\Debug\netcoreapp2.2\Razor\Views\AjaxNotification\AjaxDelete.g.cshtml.cs
 C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\obj\Debug\netcoreapp2.2\AuthenticationandAuthorization.csprojAssemblyReference.cache
+C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\obj\Debug\netcoreapp2.2\Razor\Views\Pet\Index.g.cshtml.cs
+C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\obj\Debug\netcoreapp2.2\Razor\Views\Pet\Details.g.cshtml.cs
+C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\obj\Debug\netcoreapp2.2\Razor\Views\Pet\New.g.cshtml.cs

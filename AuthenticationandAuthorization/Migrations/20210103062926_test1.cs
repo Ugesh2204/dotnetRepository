@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AuthenticationandAuthorization.Migrations
 {
-    public partial class @new : Migration
+    public partial class test1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,6 +65,20 @@ namespace AuthenticationandAuthorization.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Memberships", x => x.MembershipId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Notifications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Text = table.Column<string>(nullable: true),
+                    IsRead = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notifications", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -205,6 +219,56 @@ namespace AuthenticationandAuthorization.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Messages",
+                columns: table => new
+                {
+                    MessageId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ToUserId = table.Column<int>(nullable: false),
+                    MessageHeader = table.Column<string>(nullable: true),
+                    MessageBody = table.Column<string>(nullable: true),
+                    Url = table.Column<string>(nullable: true),
+                    FromUserName = table.Column<string>(nullable: true),
+                    ToUserName = table.Column<string>(nullable: true),
+                    MessageDtTm = table.Column<DateTime>(nullable: false),
+                    Comment_status = table.Column<int>(nullable: false),
+                    FromUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Messages", x => x.MessageId);
+                    table.ForeignKey(
+                        name: "FK_Messages_AspNetUsers_FromUserId",
+                        column: x => x.FromUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Pets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: false),
+                    Age = table.Column<int>(nullable: false),
+                    Color = table.Column<string>(nullable: false),
+                    IsSelling = table.Column<bool>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Pets_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SingleDetails",
                 columns: table => new
                 {
@@ -273,10 +337,16 @@ namespace AuthenticationandAuthorization.Migrations
                     SubId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     StartDate = table.Column<DateTime>(nullable: false),
-                    ExpireDate = table.Column<DateTime>(nullable: false),
+                    ExpireDate = table.Column<DateTime>(nullable: true),
+                    Amount = table.Column<double>(nullable: false),
+                    MembershipName = table.Column<string>(nullable: true),
+                    ClientName = table.Column<string>(nullable: true),
+                    PaymentMethod = table.Column<string>(nullable: true),
+                    PaymentDate = table.Column<string>(nullable: true),
+                    AmountToBePaid = table.Column<double>(nullable: false),
+                    RemainingAmount = table.Column<double>(nullable: false),
                     Status = table.Column<bool>(nullable: false),
-                    SubName = table.Column<string>(nullable: true),
-                    Mprice = table.Column<double>(nullable: false),
+                    MorePaymentRequired = table.Column<bool>(nullable: false),
                     ApplicationUserId = table.Column<string>(nullable: true),
                     MembershipId = table.Column<int>(nullable: false)
                 },
@@ -298,26 +368,56 @@ namespace AuthenticationandAuthorization.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Payments",
+                name: "UserNotifications",
                 columns: table => new
                 {
-                    PaymentId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ClientName = table.Column<string>(nullable: true),
-                    PaymentMethod = table.Column<string>(nullable: true),
-                    PaymentDate = table.Column<string>(nullable: true),
-                    AmountToBePaid = table.Column<double>(nullable: false),
-                    RemainingAmount = table.Column<double>(nullable: false),
-                    SubId = table.Column<int>(nullable: false)
+                    NotificationId = table.Column<int>(nullable: false),
+                    ApplicationUserId = table.Column<string>(nullable: false),
+                    NotificationId1 = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Payments", x => x.PaymentId);
+                    table.PrimaryKey("PK_UserNotifications", x => new { x.NotificationId, x.ApplicationUserId });
+                    table.UniqueConstraint("AK_UserNotifications_NotificationId", x => x.NotificationId);
                     table.ForeignKey(
-                        name: "FK_Payments_Subcriptions_SubId",
-                        column: x => x.SubId,
-                        principalTable: "Subcriptions",
-                        principalColumn: "SubId",
+                        name: "FK_UserNotifications_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserNotifications_Notifications_NotificationId1",
+                        column: x => x.NotificationId1,
+                        principalTable: "Notifications",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Watchlists",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    PetId = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
+                    ApplicationUserId = table.Column<string>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Watchlists", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Watchlists_AspNetUsers_ApplicationUserId",
+                        column: x => x.ApplicationUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Watchlists_Pets_PetId",
+                        column: x => x.PetId,
+                        principalTable: "Pets",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -366,9 +466,14 @@ namespace AuthenticationandAuthorization.Migrations
                 column: "MembershipId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_SubId",
-                table: "Payments",
-                column: "SubId");
+                name: "IX_Messages_FromUserId",
+                table: "Messages",
+                column: "FromUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pets_UserId",
+                table: "Pets",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SingleDetails_ApplicationUserId",
@@ -389,6 +494,26 @@ namespace AuthenticationandAuthorization.Migrations
                 name: "IX_UserDetail_ApplicationUserId",
                 table: "UserDetail",
                 column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserNotifications_ApplicationUserId",
+                table: "UserNotifications",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserNotifications_NotificationId1",
+                table: "UserNotifications",
+                column: "NotificationId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Watchlists_ApplicationUserId",
+                table: "Watchlists",
+                column: "ApplicationUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Watchlists_PetId",
+                table: "Watchlists",
+                column: "PetId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -412,7 +537,7 @@ namespace AuthenticationandAuthorization.Migrations
                 name: "Membership_Prices");
 
             migrationBuilder.DropTable(
-                name: "Payments");
+                name: "Messages");
 
             migrationBuilder.DropTable(
                 name: "Photos");
@@ -424,19 +549,31 @@ namespace AuthenticationandAuthorization.Migrations
                 name: "Student");
 
             migrationBuilder.DropTable(
+                name: "Subcriptions");
+
+            migrationBuilder.DropTable(
                 name: "UserDetail");
+
+            migrationBuilder.DropTable(
+                name: "UserNotifications");
+
+            migrationBuilder.DropTable(
+                name: "Watchlists");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Subcriptions");
+                name: "Memberships");
+
+            migrationBuilder.DropTable(
+                name: "Notifications");
+
+            migrationBuilder.DropTable(
+                name: "Pets");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Memberships");
         }
     }
 }

@@ -32,6 +32,9 @@ namespace AuthenticationandAuthorization.Data
         public DbSet<Membership_Price> Membership_Prices { get; set; }
         public DbSet<Subcription> Subcriptions { get; set; }
 
+
+        public DbSet<Pet> Pets { get; set; }
+        public DbSet<Watchlist> Watchlists { get; set; }
         public DbSet<Notification>Notifications { get; set; }
         public DbSet<NotificationApplicationUser>UserNotifications { get; set; }
 
@@ -45,6 +48,25 @@ namespace AuthenticationandAuthorization.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
+            //builder.Entity<ApplicationUser>()
+            //        .HasMany(p => p.Pets)
+            //        .WithOne(u => u.User)
+            //        .IsRequired();
+
+            //builder.Entity<Pet>()
+            //        .HasMany(w => w.Watchlists)
+            //        .WithOne(p => p.Pet)
+            //        .IsRequired();
+
+            //builder.Entity<ApplicationUser>()
+            //        .HasMany(w => w.Watchlists)
+            //        .WithOne(u => u.User)
+            //        .IsRequired();
+
+            builder.Entity<NotificationApplicationUser>()
+                    .HasKey(k => new { k.NotificationId, k.ApplicationUserId });
+
             base.OnModelCreating(builder);
         }
 

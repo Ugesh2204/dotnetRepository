@@ -7,17 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200615163430_Subpayment.cs" />
-    <Compile Remove="Migrations\20200615163430_Subpayment.Designer.cs" />
-    <Compile Remove="Migrations\20200616154708_correcteddb.cs" />
-    <Compile Remove="Migrations\20200616154708_correcteddb.Designer.cs" />
-    <Compile Remove="Migrations\20200628084311_subtype.cs" />
-    <Compile Remove="Migrations\20200628084311_subtype.Designer.cs" />
-    <Compile Remove="Migrations\20200701170205_new.cs" />
-    <Compile Remove="Migrations\20200701170205_new.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Hangfire" Version="1.7.12" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />

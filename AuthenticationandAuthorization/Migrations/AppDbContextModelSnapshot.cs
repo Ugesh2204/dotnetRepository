@@ -151,6 +151,8 @@ namespace AuthenticationandAuthorization.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("IsRead");
+
                     b.Property<string>("Text");
 
                     b.HasKey("Id");
@@ -160,23 +162,46 @@ namespace AuthenticationandAuthorization.Migrations
 
             modelBuilder.Entity("AuthenticationandAuthorization.Models.NotificationApplicationUser", b =>
                 {
-                    b.Property<int>("NotificationId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("NotificationId");
 
                     b.Property<string>("ApplicationUserId");
 
-                    b.Property<bool>("IsRead");
-
                     b.Property<int>("NotificationId1");
 
-                    b.HasKey("NotificationId");
+                    b.HasKey("NotificationId", "ApplicationUserId");
+
+                    b.HasAlternateKey("NotificationId");
 
                     b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("NotificationId1");
 
                     b.ToTable("UserNotifications");
+                });
+
+            modelBuilder.Entity("AuthenticationandAuthorization.Models.Pet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Age");
+
+                    b.Property<string>("Color")
+                        .IsRequired();
+
+                    b.Property<bool>("IsSelling");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Pets");
                 });
 
             modelBuilder.Entity("AuthenticationandAuthorization.Models.Photo", b =>
@@ -292,6 +317,29 @@ namespace AuthenticationandAuthorization.Migrations
                     b.HasIndex("ApplicationUserId");
 
                     b.ToTable("UserDetail");
+                });
+
+            modelBuilder.Entity("AuthenticationandAuthorization.Models.Watchlist", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int>("PetId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("PetId");
+
+                    b.ToTable("Watchlists");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -423,12 +471,20 @@ namespace AuthenticationandAuthorization.Migrations
                 {
                     b.HasOne("AuthenticationandAuthorization.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("NotificationApplicationUsers")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AuthenticationandAuthorization.Models.Notification", "Notification")
                         .WithMany("NotificationApplicationUsers")
                         .HasForeignKey("NotificationId1")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("AuthenticationandAuthorization.Models.Pet", b =>
+                {
+                    b.HasOne("AuthenticationandAuthorization.Models.ApplicationUser", "User")
+                        .WithMany("Pets")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("AuthenticationandAuthorization.Models.SingleDetails", b =>
@@ -455,6 +511,18 @@ namespace AuthenticationandAuthorization.Migrations
                     b.HasOne("AuthenticationandAuthorization.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("AuthenticationandAuthorization.Models.Watchlist", b =>
+                {
+                    b.HasOne("AuthenticationandAuthorization.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("Watchlists")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("AuthenticationandAuthorization.Models.Pet", "Pet")
+                        .WithMany("Watchlists")
+                        .HasForeignKey("PetId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

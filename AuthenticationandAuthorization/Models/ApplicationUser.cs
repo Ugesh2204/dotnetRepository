@@ -25,6 +25,8 @@ namespace AuthenticationandAuthorization.Models
         //Chatuser wil a  collection of messages
         public virtual ICollection<Message> Messages { get; set; }
 
+        public List<Pet> Pets { get; set; }
+        public List<Watchlist> Watchlists { get; set; }
         public List<NotificationApplicationUser> NotificationApplicationUsers { get; set; }
 
     }

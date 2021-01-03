@@ -6,6 +6,7 @@ using AuthenticationandAuthorization.Data;
 using AuthenticationandAuthorization.HangFire_service;
 using AuthenticationandAuthorization.Hubs;
 using AuthenticationandAuthorization.Models;
+using AuthenticationandAuthorization.Services;
 using Hangfire;
 using Hangfire.SqlServer;
 using Microsoft.AspNetCore.Builder;
@@ -64,6 +65,12 @@ namespace AuthenticationandAuthorization
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
 
+
+            services.AddTransient<IPetRepository, PetRepository>();
+
+            //services.AddTransient<IWatchlistRepository, WatchlistRepository>();
+
+            services.AddTransient<INotificationRepository, NotificationRepository>();
 
             //Password settings
 

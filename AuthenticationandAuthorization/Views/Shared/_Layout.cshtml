@@ -18,8 +18,9 @@
     <script src="~/lib/popper.js/dist/umd/popper.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
-    <script src="~/js/Messagenotification.js"></script>
-    <script src="~/js/chat.js"></script>
+    @*/*<script src="~/js/Messagenotification.js"></script>*/*@
+    @*<script src="~/js/chat.js"></script>*@
+    <script src="~/js/delete.js"></script>
 
 
 
@@ -56,15 +57,19 @@
                         <a class="nav-link" asp-controller="NotificationMessage" asp-action="Index">Notification</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Pet" asp-action="Index">Pet</a>
+                    </li>
+
 
 
 
                     @*<li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>*@
+            <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+        </li>*@
 
 
 
@@ -106,8 +111,8 @@
                         }
                         @*<li class="nav-item">
 
-                                <a class="nav-link" asp-controller="Userprofile" asp-action="Index">User profile</a>
-                            </li>*@
+                <a class="nav-link" asp-controller="Userprofile" asp-action="Index">User profile</a>
+            </li>*@
                         <li class="nav-item">
 
                             <a class="nav-link" asp-controller="UserSubcription" asp-action="Index">Add Subcription</a>
@@ -173,17 +178,17 @@
                                     <li class="divider"></li>
                                     <li class="notifications-wrapper">
                                         @*<a class="content" href="#">
-                                                <div class="notification-item">
-                                                    <h4 class="item-title">Evaluation Deadline 1 · day ago</h4>
-                                                    <p class="item-info">Marketing 101, Video Assignment</p>
-                                                </div>
-                                            </a>*@
+                                <div class="notification-item">
+                                    <h4 class="item-title">Evaluation Deadline 1 · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>*@
                                         @*<a class="content" href="#">
-                                                <div class="notification-item">
-                                                    <h4 class="item-title">Evaluation Deadline 1 · day ago</h4>
-                                                    <p class="item-info">Marketing 101, Video Assignment</p>
-                                                </div>
-                                            </a>*@
+                                <div class="notification-item">
+                                    <h4 class="item-title">Evaluation Deadline 1 · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>*@
                                     </li>
 
                                 </ul>
