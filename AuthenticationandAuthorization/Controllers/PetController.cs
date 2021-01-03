@@ -59,31 +59,61 @@ namespace AuthenticationandAuthorization.Controllers
         [HttpPost]
         public IActionResult New(Pet pet, string IsEditMode)
         {
-            if (IsEditMode.Equals("false"))
 
-                _petRepository.Create(pet);
+            //To handle Exception we use try catch block to give 
+            //more specfic error about what happen
 
-            else
-                _petRepository.Edit(pet);
+            try
+            {
+                //throw new UnauthorizedAccessException();
 
-            return RedirectToAction(nameof(Index));
+                if (IsEditMode.Equals("false"))
+
+                    _petRepository.Create(pet);
+
+                else
+                    _petRepository.Edit(pet);
+
+                return RedirectToAction(nameof(Index));
+
+            } catch (Exception)
+            {
+                return Content("Could not save or edit your pet");
+            }
+           
         }
 
 
         [HttpGet]
         public IActionResult Edit(int Id)
         {
-            ViewBag.IsEditMode = "true";
-            var pet = _petRepository.GetSinglePet(Id);
-            return View("New", pet);
+            try {
+                ViewBag.IsEditMode = "true";
+                var pet = _petRepository.GetSinglePet(Id);
+                return View("New", pet);
+            }
+            catch (Exception)
+            {
+                return Content("Could not find the pet");
+            }
+
+           
 
         }
 
         public IActionResult Delete(int Id)
         {
-            var pet = _petRepository.GetSinglePet(Id);
-            _petRepository.Delete(pet);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                var pet = _petRepository.GetSinglePet(Id);
+                _petRepository.Delete(pet);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                return Content("Could not delete pet");
+            }
+           
         }
 
 
