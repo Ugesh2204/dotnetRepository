@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "72bdfe94de67babe02cee5031bc8975b7bd8b434"
+    "signature": "dde1a65b248663dfe3dc2c3d04f1b3d393cb9fdc"
   },
   "compilationOptions": {
     "defines": [
@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v2.2": {
       "AuthenticationandAuthorization/1.0.0": {
         "dependencies": {
+          "ClientNotifications": "1.17.1",
           "Hangfire": "1.7.12",
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.2.0",
@@ -32,13 +33,34 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "2.2.0",
           "Microsoft.EntityFrameworkCore.Tools": "2.2.0",
           "Microsoft.NETCore.App": "2.2.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.3"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.3",
+          "SweetAlert.Bootstrap": "1.0.1"
         },
         "runtime": {
           "AuthenticationandAuthorization.dll": {}
         },
         "compile": {
           "AuthenticationandAuthorization.dll": {}
+        }
+      },
+      "bootstrap/3.0.1": {
+        "dependencies": {
+          "jQuery": "1.9.0"
+        }
+      },
+      "ClientNotifications/1.17.1": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc": "2.2.0",
+          "Microsoft.Extensions.FileProviders.Embedded": "2.2.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/ClientNotifications.dll": {
+            "assemblyVersion": "1.17.1.0",
+            "fileVersion": "1.17.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/ClientNotifications.dll": {}
         }
       },
       "Hangfire/1.7.12": {
@@ -125,6 +147,7 @@
           "lib/netstandard2.0/Hangfire.SqlServer.dll": {}
         }
       },
+      "jQuery/1.9.0": {},
       "Microsoft.CodeAnalysis.CSharp.Workspaces/2.8.0": {
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp": "2.8.0",
@@ -465,6 +488,11 @@
           "lib/netstandard1.6/NuGet.Frameworks.dll": {}
         }
       },
+      "SweetAlert.Bootstrap/1.0.1": {
+        "dependencies": {
+          "Twitter.Bootstrap": "3.0.1.1"
+        }
+      },
       "System.Composition/1.0.31": {
         "dependencies": {
           "System.Composition.AttributedModel": "1.0.31",
@@ -600,6 +628,11 @@
           "System.Runtime.Extensions": "4.3.0",
           "System.Threading": "4.3.0",
           "System.Threading.Tasks": "4.3.0"
+        }
+      },
+      "Twitter.Bootstrap/3.0.1.1": {
+        "dependencies": {
+          "bootstrap": "3.0.1"
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -3623,6 +3656,20 @@
       "serviceable": false,
       "sha512": ""
     },
+    "bootstrap/3.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rwpiPJiWRbGRypo/NnyqzwS9hWLMLujLU1vM2OfeuZJ2yNGb86RzmQKEcWbewWu+eJkcYatCqpn/U5zNgotVHQ==",
+      "path": "bootstrap/3.0.1",
+      "hashPath": "bootstrap.3.0.1.nupkg.sha512"
+    },
+    "ClientNotifications/1.17.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uiH40wIbASj8ob/Y1R1YfuRsZ5QKY/+XTyLRyc816A0EW4iGaRzexEYX1ZMIug8s7NAtCstt+bhkSID/8qJ7jQ==",
+      "path": "clientnotifications/1.17.1",
+      "hashPath": "clientnotifications.1.17.1.nupkg.sha512"
+    },
     "Hangfire/1.7.12": {
       "type": "package",
       "serviceable": true,
@@ -3650,6 +3697,13 @@
       "sha512": "sha512-9zlA/oW9aOsafKU0Yoce68tCR5Q88kKGccRJ0uoxUN4rsQEjA1KLfsc3/MlF1T5QJ6EcY+G48jkTMJUIWg8r8w==",
       "path": "hangfire.sqlserver/1.7.12",
       "hashPath": "hangfire.sqlserver.1.7.12.nupkg.sha512"
+    },
+    "jQuery/1.9.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bS6OGSd/QL39vKKhATpeehgZDCzV6foRJ52EocEGAB29VetwXkQHN6KQIBlBbW9VJzuHr+rQxHYZ13MnPGQ/vw==",
+      "path": "jquery/1.9.0",
+      "hashPath": "jquery.1.9.0.nupkg.sha512"
     },
     "Microsoft.CodeAnalysis.CSharp.Workspaces/2.8.0": {
       "type": "package",
@@ -3777,6 +3831,13 @@
       "path": "nuget.frameworks/4.7.0",
       "hashPath": "nuget.frameworks.4.7.0.nupkg.sha512"
     },
+    "SweetAlert.Bootstrap/1.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GOwRZiUaTDUegSgIwz+0kiW7ChrrXaM7vPCVfkynT4LX8hW1lA8mPfDZr454CnNbd/KXT2oywPio66zRemlaaA==",
+      "path": "sweetalert.bootstrap/1.0.1",
+      "hashPath": "sweetalert.bootstrap.1.0.1.nupkg.sha512"
+    },
     "System.Composition/1.0.31": {
       "type": "package",
       "serviceable": true,
@@ -3825,6 +3886,13 @@
       "sha512": "sha512-td7x21K8LalpjTWCzW/nQboQIFbq9i0r+PCyBBCdLWWnm4NBcdN18vpz/G9hCpUaCIfRL+ZxJNVTywlNlB1aLQ==",
       "path": "system.linq.parallel/4.3.0",
       "hashPath": "system.linq.parallel.4.3.0.nupkg.sha512"
+    },
+    "Twitter.Bootstrap/3.0.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9SzxEOEB/rKKeTO/2Tv9uPRzQg/chRfofY9yZ71Sgpxfubp1IXiQlRRFc7IhH+fxo3S/u0umS4dUSgHeYnFIsw==",
+      "path": "twitter.bootstrap/3.0.1.1",
+      "hashPath": "twitter.bootstrap.3.0.1.1.nupkg.sha512"
     },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "type": "package",

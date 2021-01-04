@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using AuthenticationandAuthorization.Data;
 using AuthenticationandAuthorization.Models;
 using AuthenticationandAuthorization.Services;
+using ClientNotifications;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using static ClientNotifications.Helpers.NotificationHelper;
 
 namespace AuthenticationandAuthorization.Controllers
 {
@@ -18,12 +20,15 @@ namespace AuthenticationandAuthorization.Controllers
         AppDbContext _db;
         private IPetRepository _petRepository;
 
+        private IClientNotification _clientNotification;
 
-        public PetController(AppDbContext db)
+
+        public PetController(AppDbContext db, IClientNotification clientNotification)
         {
            _db = db;
             //_userManager = userManager;
             _petRepository = new PetRepository(_db);
+            _clientNotification = clientNotification;
 
         }
 
@@ -68,17 +73,36 @@ namespace AuthenticationandAuthorization.Controllers
                 //throw new UnauthorizedAccessException();
 
                 if (IsEditMode.Equals("false"))
-
+                {
                     _petRepository.Create(pet);
 
+                    _clientNotification.AddSweetNotification("Success",
+                                "Your Pet is Created",
+                                NotificationType.success);
+
+                }
+
                 else
+                {
                     _petRepository.Edit(pet);
+
+                    _clientNotification.AddSweetNotification("Success",
+                               "Your Pet has been edited",
+                               NotificationType.success);
+
+                }
+
+               
 
                 return RedirectToAction(nameof(Index));
 
             } catch (Exception)
             {
-                return Content("Could not save or edit your pet");
+                _clientNotification.AddSweetNotification("Error",
+                              "Your could be created",
+                              NotificationType.error);
+
+                return RedirectToAction(nameof(Index));
             }
            
         }
@@ -107,11 +131,12 @@ namespace AuthenticationandAuthorization.Controllers
             {
                 var pet = _petRepository.GetSinglePet(Id);
                 _petRepository.Delete(pet);
-                return RedirectToAction(nameof(Index));
+
+                return Ok();
             }
             catch (Exception)
             {
-                return Content("Could not delete pet");
+                return BadRequest();
             }
            
         }

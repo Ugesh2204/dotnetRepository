@@ -25,11 +25,11 @@
                     <td>@pet.Color</td>
 
                     <td>
-                        <a class="btn btn-primary" asp-action="edit" asp-route-id="@pet.Id">Edit</a>
+                        @*<a class="btn btn-primary" asp-action="edit" asp-route-id="@pet.Id">Edit</a>*@
                         <a class="btn btn-primary delete"
                            data-id ="@pet.Id"
                            data-controller ="Pet"
-                           data-action ="delete"
+                           data-action ="Delete"
                            data-body-message ="Are you sure to delete this page?">
                         Delete</a>
 

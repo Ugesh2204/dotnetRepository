@@ -7,6 +7,7 @@ using AuthenticationandAuthorization.HangFire_service;
 using AuthenticationandAuthorization.Hubs;
 using AuthenticationandAuthorization.Models;
 using AuthenticationandAuthorization.Services;
+using ClientNotifications.ServiceExtensions;
 using Hangfire;
 using Hangfire.SqlServer;
 using Microsoft.AspNetCore.Builder;
@@ -119,7 +120,7 @@ namespace AuthenticationandAuthorization
             services.AddSingleton<IPrintjob, Printjob>();
             services.AddSingleton<IMyEmailService, MyEmailService>();
 
-
+            services.AddToastNotification();
 
             services.AddMvc();
 
