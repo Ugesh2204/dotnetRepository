@@ -14,8 +14,11 @@
         <a class="btn btn-primary pull-right"
            asp-action="New"
            asp-controller="Watchlist"
-           asp-route-petId="@Model.Id">
-            Add To WatchList
+           asp-route-petId="@Model.Id"
+            data-toggle="tooltip" 
+            data-placement="top" 
+            title=" Add To WatchList">
+            <i class="fas fa-plus"></i>
           
         </a>
     </div>
