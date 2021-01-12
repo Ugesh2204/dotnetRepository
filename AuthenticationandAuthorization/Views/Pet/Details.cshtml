@@ -1,7 +1,40 @@
 ﻿@model Pet
+@using Microsoft.AspNetCore.Identity
 
-<h2> Pet Details </h2>
-<p>@Model.Id<p>
-<p>@Model.Name<p>
-<p>@Model.Age<p>
-<p>@Model.Color<p>
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject AuthenticationandAuthorization.Services.IWatchlistRepository WatchlistRepository
+
+@*@{var ifExists = WatchlistRepository.CheckIfAlreadyExists(UserManager.GetUserId(User), @Model.Id);}*@
+
+@if (SignInManager.IsSignedIn(User) && Model.UserId != UserManager.GetUserId(User))
+{
+
+    <div class="row">
+        <a class="btn btn-primary pull-right"
+           asp-action="New"
+           asp-controller="Watchlist"
+           asp-route-petId="@Model.Id">
+            Add To WatchList
+          
+        </a>
+    </div>
+}
+
+<p>Id: @Model.Id</p>
+<p>Name: @Model.Name</p>
+<p>Age: @Model.Age</p>
+<p>Color: @Model.Color</p>
+<p>Selling Status: @(Model.IsSelling ? "Selling" : "Not Selling")</p>
+
+@*@if (SignInManager.IsSignedIn(User) && Model.UserId == UserManager.GetUserId(User))
+{
+    @if (Model.IsSelling)
+    {
+        <a class="btn btn-danger" asp-action="ToggleSelling" asp-controller="Pet" asp-route-id="@Model.Id">Remove from selling list</a>
+    }
+    else
+    {
+        <a class="btn btn-primary" asp-action="ToggleSelling" asp-controller="Pet" asp-route-id="@Model.Id">Add to selling list</a>
+    }
+}*@

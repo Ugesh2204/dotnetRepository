@@ -26,6 +26,7 @@ namespace AuthenticationandAuthorization.Models
         public virtual ICollection<Message> Messages { get; set; }
 
         public List<Pet> Pets { get; set; }
+        //Appuser can have a list of watch list
         public List<Watchlist> Watchlists { get; set; }
         public List<NotificationApplicationUser> NotificationApplicationUsers { get; set; }
 

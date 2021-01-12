@@ -26,6 +26,10 @@ namespace AuthenticationandAuthorization.Models
         public bool IsSelling { get; set; } = false;
         public ApplicationUser User { get; set; }
         public string UserId { get; set; }
+
+        //Assume Watchlist and pet can have 1:M RELATIONSHIP
+        //So we can have multiple pet in our watchlist
+        //Pet can have multiple watchlist
         public List<Watchlist> Watchlists { get; set; }
     }
 }

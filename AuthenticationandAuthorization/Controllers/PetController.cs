@@ -6,6 +6,7 @@ using AuthenticationandAuthorization.Data;
 using AuthenticationandAuthorization.Models;
 using AuthenticationandAuthorization.Services;
 using ClientNotifications;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using static ClientNotifications.Helpers.NotificationHelper;
@@ -19,16 +20,19 @@ namespace AuthenticationandAuthorization.Controllers
 
         AppDbContext _db;
         private IPetRepository _petRepository;
-
+        private UserManager<ApplicationUser> _userManger;
         private IClientNotification _clientNotification;
 
 
-        public PetController(AppDbContext db, IClientNotification clientNotification)
+        public PetController(AppDbContext db, 
+                            IClientNotification clientNotification, 
+                             UserManager<ApplicationUser> userManager)
         {
            _db = db;
             //_userManager = userManager;
             _petRepository = new PetRepository(_db);
             _clientNotification = clientNotification;
+            _userManger = userManager;
 
         }
 
@@ -43,6 +47,14 @@ namespace AuthenticationandAuthorization.Controllers
             var pets = _petRepository.GetAllPets();
             return View(pets);
            
+        }
+
+        [Authorize]
+        public IActionResult MyPets()
+        {
+            var userId = _userManger.GetUserId(HttpContext.User);
+            var pets = _petRepository.GetPetByUserId(userId);
+            return View(pets);
         }
 
         public IActionResult Details(int id)

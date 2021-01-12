@@ -18,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+
 namespace AuthenticationandAuthorization
 {
     public class Startup
@@ -69,7 +70,7 @@ namespace AuthenticationandAuthorization
 
             services.AddTransient<IPetRepository, PetRepository>();
 
-            //services.AddTransient<IWatchlistRepository, WatchlistRepository>();
+            services.AddTransient<IWatchlistRepository, WatchlistRepository>();
 
             services.AddTransient<INotificationRepository, NotificationRepository>();
 
