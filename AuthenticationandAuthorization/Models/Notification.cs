@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace AuthenticationandAuthorization.Models
 {
+    //Notification table 
     public class Notification
     {
         public int Id { get; set; }

@@ -28,6 +28,7 @@ namespace AuthenticationandAuthorization.Models
         public List<Pet> Pets { get; set; }
         //Appuser can have a list of watch list
         public List<Watchlist> Watchlists { get; set; }
+        //Notification table 
         public List<NotificationApplicationUser> NotificationApplicationUsers { get; set; }
 
     }

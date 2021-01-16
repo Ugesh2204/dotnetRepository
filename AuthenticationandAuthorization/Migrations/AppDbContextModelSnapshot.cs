@@ -166,15 +166,9 @@ namespace AuthenticationandAuthorization.Migrations
 
                     b.Property<string>("ApplicationUserId");
 
-                    b.Property<int>("NotificationId1");
-
                     b.HasKey("NotificationId", "ApplicationUserId");
 
-                    b.HasAlternateKey("NotificationId");
-
                     b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("NotificationId1");
 
                     b.ToTable("UserNotifications");
                 });
@@ -476,7 +470,7 @@ namespace AuthenticationandAuthorization.Migrations
 
                     b.HasOne("AuthenticationandAuthorization.Models.Notification", "Notification")
                         .WithMany("NotificationApplicationUsers")
-                        .HasForeignKey("NotificationId1")
+                        .HasForeignKey("NotificationId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

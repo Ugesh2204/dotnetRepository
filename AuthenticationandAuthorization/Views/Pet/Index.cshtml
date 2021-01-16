@@ -5,40 +5,28 @@
 <h2>All pets from database</h2>
 <a class="btn btn-info" asp-action="New">Add new Pet</a>
 
-    <table class="table">
-        <thead>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Age</td>
+            <td>Color</td>
+            <td>Selling Status</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pet in Model)
+        {
             <tr>
-                <td>Id</td>
-                <td>Name</td>
-                <td>Age</td>
-                <td>Color</td>
-                <td>Actions</td>
+                <td>@pet.Id</td>
+                <td><a asp-action="Details" asp-controller="Pet" asp-route-id="@pet.Id">@pet.Name</a></td>
+                <td>@pet.Age</td>
+                <td>@pet.Color</td>
+                <td>@(pet.IsSelling ? "Selling" : "Not Selling")</td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var pet in Model)
-            {
-                <tr>
-                    <td>@pet.Id</td>
-                    <td><a asp-action="Details" asp-controller="Pet" asp-route-id="@pet.Id">@pet.Name</a></td>
-                    <td>@pet.Age</td>
-                    <td>@pet.Color</td>
-
-                    <td>
-                        @*<a class="btn btn-primary" asp-action="edit" asp-route-id="@pet.Id">Edit</a>*@
-                        <a class="btn btn-primary delete"
-                           data-id ="@pet.Id"
-                           data-controller ="Pet"
-                           data-action ="Delete"
-                           data-body-message ="Are you sure to delete this page?">
-                        Delete</a>
-
-                    </td>
-                    
-                    
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
 
 </div>

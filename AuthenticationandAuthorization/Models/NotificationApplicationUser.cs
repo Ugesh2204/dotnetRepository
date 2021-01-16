@@ -8,7 +8,10 @@ namespace AuthenticationandAuthorization.Models
 {
     public class NotificationApplicationUser
     {
-        [Key]
+
+        //Many to Many reklationship 3 tables. Two MASTER TABLE AND 1 CHILD
+        //it contain Notification class and application user class
+ 
         public int NotificationId { get; set; }
         public Notification Notification { get; set; }
         public string ApplicationUserId { get; set; }
