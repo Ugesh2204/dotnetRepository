@@ -14,17 +14,32 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #line 2 "C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\_ViewImports.cshtml"
-using AuthenticationandAuthorization.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #line 3 "C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\_ViewImports.cshtml"
+using AuthenticationandAuthorization;
+
+#line default
+#line hidden
+#line 4 "C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\_ViewImports.cshtml"
+using AuthenticationandAuthorization.ViewModels;
+
+#line default
+#line hidden
+#line 5 "C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\_ViewImports.cshtml"
 using AuthenticationandAuthorization.Models;
 
 #line default
 #line hidden
+#line 6 "C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\_ViewImports.cshtml"
+using AuthenticationandAuthorization.Services;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9b0af34b455db74432cc80eaf50f11951af757f5", @"/Views/AjaxNotification/AjaxDelete.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a8de2c07261afebee71f3ad25e780c152f3bd9d7", @"/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5e80801615f7db83c5d0fd5da94c5c41cac60d09", @"/_ViewImports.cshtml")]
     public class Views_AjaxNotification_AjaxDelete : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<AuthenticationandAuthorization.Models.Message>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Create", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -57,7 +72,7 @@ using AuthenticationandAuthorization.Models;
             WriteLiteral("\r\n<p>\r\n    ");
             EndContext();
             BeginContext(78, 37, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b0af34b455db74432cc80eaf50f11951af757f54713", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b0af34b455db74432cc80eaf50f11951af757f55315", async() => {
                 BeginContext(101, 10, true);
                 WriteLiteral("Create New");
                 EndContext();
@@ -247,7 +262,7 @@ using AuthenticationandAuthorization.Models;
             WriteLiteral("\r\n            </td>\r\n            <td>\r\n                ");
             EndContext();
             BeginContext(1946, 60, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b0af34b455db74432cc80eaf50f11951af757f514270", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b0af34b455db74432cc80eaf50f11951af757f514872", async() => {
                 BeginContext(1998, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -282,7 +297,7 @@ using AuthenticationandAuthorization.Models;
             WriteLiteral(" |\r\n                ");
             EndContext();
             BeginContext(2026, 66, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b0af34b455db74432cc80eaf50f11951af757f516681", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b0af34b455db74432cc80eaf50f11951af757f517283", async() => {
                 BeginContext(2081, 7, true);
                 WriteLiteral("Details");
                 EndContext();
@@ -317,7 +332,7 @@ using AuthenticationandAuthorization.Models;
             WriteLiteral(" |\r\n                ");
             EndContext();
             BeginContext(2112, 64, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b0af34b455db74432cc80eaf50f11951af757f519098", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "9b0af34b455db74432cc80eaf50f11951af757f519700", async() => {
                 BeginContext(2166, 6, true);
                 WriteLiteral("Delete");
                 EndContext();

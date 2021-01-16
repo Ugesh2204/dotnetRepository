@@ -14,17 +14,32 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #line 2 "C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\_ViewImports.cshtml"
-using AuthenticationandAuthorization.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 #line default
 #line hidden
 #line 3 "C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\_ViewImports.cshtml"
+using AuthenticationandAuthorization;
+
+#line default
+#line hidden
+#line 4 "C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\_ViewImports.cshtml"
+using AuthenticationandAuthorization.ViewModels;
+
+#line default
+#line hidden
+#line 5 "C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\_ViewImports.cshtml"
 using AuthenticationandAuthorization.Models;
 
 #line default
 #line hidden
+#line 6 "C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\_ViewImports.cshtml"
+using AuthenticationandAuthorization.Services;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f1276df43e37024fe7d1faca7360cd987796586b", @"/Views/SendMailNotification/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a8de2c07261afebee71f3ad25e780c152f3bd9d7", @"/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5e80801615f7db83c5d0fd5da94c5c41cac60d09", @"/_ViewImports.cshtml")]
     public class Views_SendMailNotification_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<AuthenticationandAuthorization.Models.Subcription>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Index", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -74,7 +89,7 @@ using AuthenticationandAuthorization.Models;
             WriteLiteral("\r\n<div class=\"container\">\r\n    <h1>List of Users Membership</h1>\r\n\r\n    ");
             EndContext();
             BeginContext(221, 772, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b6160", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b6762", async() => {
                 BeginContext(297, 19, true);
                 WriteLiteral("\r\n\r\n        <p>\r\n\r\n");
                 EndContext();
@@ -82,7 +97,7 @@ using AuthenticationandAuthorization.Models;
                 WriteLiteral("            <select class=\"form-control\" id=\"Usersearch\" name=\"Usersearch\" style=\"width:300px;\">\r\n                \r\n                ");
                 EndContext();
                 BeginContext(590, 33, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b6822", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b7424", async() => {
                     BeginContext(598, 16, true);
                     WriteLiteral("5 days to Expire");
                     EndContext();
@@ -102,7 +117,7 @@ using AuthenticationandAuthorization.Models;
                 WriteLiteral("\r\n                ");
                 EndContext();
                 BeginContext(641, 34, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b8102", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b8704", async() => {
                     BeginContext(649, 17, true);
                     WriteLiteral("15 days to Expire");
                     EndContext();
@@ -122,7 +137,7 @@ using AuthenticationandAuthorization.Models;
                 WriteLiteral("\r\n                ");
                 EndContext();
                 BeginContext(693, 34, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b9383", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b9985", async() => {
                     BeginContext(701, 17, true);
                     WriteLiteral("30 days to Expire");
                     EndContext();
@@ -142,7 +157,7 @@ using AuthenticationandAuthorization.Models;
                 WriteLiteral("\r\n                ");
                 EndContext();
                 BeginContext(745, 25, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b10664", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b11266", async() => {
                     BeginContext(753, 8, true);
                     WriteLiteral("Platinum");
                     EndContext();
@@ -162,7 +177,7 @@ using AuthenticationandAuthorization.Models;
                 WriteLiteral("\r\n                 ");
                 EndContext();
                 BeginContext(789, 21, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b11937", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b12539", async() => {
                     BeginContext(797, 4, true);
                     WriteLiteral("Gold");
                     EndContext();
@@ -182,7 +197,7 @@ using AuthenticationandAuthorization.Models;
                 WriteLiteral("\r\n            </select>\r\n            <input type=\"submit\" value=\"Search\" class=\"btn btn-primary\" />\r\n            ");
                 EndContext();
                 BeginContext(923, 41, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b13311", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b13913", async() => {
                     BeginContext(945, 15, true);
                     WriteLiteral("Get All Members");
                     EndContext();
@@ -383,7 +398,7 @@ using AuthenticationandAuthorization.Models;
             WriteLiteral("                        </td>\r\n\r\n\r\n\r\n\r\n\r\n\r\n                        <td>\r\n                            ");
             EndContext();
             BeginContext(3192, 56, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b23178", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b23780", async() => {
                 BeginContext(3240, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -418,7 +433,7 @@ using AuthenticationandAuthorization.Models;
             WriteLiteral(" |\r\n                            ");
             EndContext();
             BeginContext(3280, 62, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b25609", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b26211", async() => {
                 BeginContext(3331, 7, true);
                 WriteLiteral("Details");
                 EndContext();
@@ -453,7 +468,7 @@ using AuthenticationandAuthorization.Models;
             WriteLiteral(" |\r\n                            ");
             EndContext();
             BeginContext(3374, 60, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b28046", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f1276df43e37024fe7d1faca7360cd987796586b28648", async() => {
                 BeginContext(3424, 6, true);
                 WriteLiteral("Delete");
                 EndContext();

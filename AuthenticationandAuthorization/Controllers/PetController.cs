@@ -154,6 +154,31 @@ namespace AuthenticationandAuthorization.Controllers
         }
 
 
+        public IActionResult ToggleSelling(int id)
+        {
+            try
+            {
+                //form seling to not selling
+
+                var pet = _petRepository.GetSinglePet(id);
+
+                //change pet status
+
+                pet.IsSelling = !pet.IsSelling;
+
+                _petRepository.Edit(pet);
+
+            }
+
+            catch (Exception)
+            {
+                return Content("Error oocurred + ex.ToString()");
+            }
+
+                return RedirectToAction(nameof(Details),new { id = id });
+        }
+
+
 
     }
 }

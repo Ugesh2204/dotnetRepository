@@ -13,6 +13,7 @@ namespace AuthenticationandAuthorization.Services
             void Create(Watchlist watchlist);
             List<Watchlist> GetUserWatchlist(string userId);
             void Remove(Watchlist watchlist);
+        //Check if already exist
             bool CheckIfAlreadyExists(string userId, int petId);
             List<Watchlist> GetWatchlistFromPetId(int petId);
         }

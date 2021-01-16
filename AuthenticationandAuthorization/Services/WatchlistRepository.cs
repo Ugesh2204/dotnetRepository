@@ -15,9 +15,10 @@ namespace AuthenticationandAuthorization.Services
         {
             _context = context;
         }
-
+        //if exist return true
         public bool CheckIfAlreadyExists(string userId, int petId)
         {
+            //it return true if any pet parameter exist in the database otherwise it is false
             return _context.Watchlists.Any(w => w.UserId.Equals(userId) && w.PetId == petId);
         }
 
