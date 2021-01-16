@@ -21,18 +21,23 @@ namespace AuthenticationandAuthorization.Controllers
         AppDbContext _db;
         private IPetRepository _petRepository;
         private UserManager<ApplicationUser> _userManger;
+        //Inject sweet alert 
         private IClientNotification _clientNotification;
+        //Inject notification
+        private INotificationRepository _notificationRepository;
 
 
         public PetController(AppDbContext db, 
                             IClientNotification clientNotification, 
-                             UserManager<ApplicationUser> userManager)
+                             UserManager<ApplicationUser> userManager,
+                             INotificationRepository notificationRepository)
         {
            _db = db;
             //_userManager = userManager;
             _petRepository = new PetRepository(_db);
             _clientNotification = clientNotification;
             _userManger = userManager;
+            _notificationRepository = notificationRepository;
 
         }
 
@@ -168,6 +173,20 @@ namespace AuthenticationandAuthorization.Controllers
 
                 _petRepository.Edit(pet);
 
+                //send notification
+                var username = _userManger.GetUserName(HttpContext.User);
+                var status = "";
+                if (pet.IsSelling)
+                    status = "Selling";
+                else
+                    status = "Not Selling";
+                var notification = new Notification
+                {
+                    Text = $"The {username} is {status} their pet"
+
+                };
+                _notificationRepository.Create(notification, pet.Id);
+                //end notification
             }
 
             catch (Exception)
