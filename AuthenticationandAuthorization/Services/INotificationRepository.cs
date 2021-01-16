@@ -10,11 +10,11 @@ namespace AuthenticationandAuthorization.Services
     {
 
         //goes to db and get all the notification of userid
-        //Method
+        //Method for notification
         List<NotificationApplicationUser> GetUserNotification(string userId);
 
-        void Create(Notification notification);
-
+        void Create(Notification notification, int petId);
+        //to change the read status on the Notification.cs
         void ReadNotification(int id);
 
     }

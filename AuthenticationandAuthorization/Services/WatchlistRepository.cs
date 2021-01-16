@@ -41,6 +41,7 @@ namespace AuthenticationandAuthorization.Services
             return _context.Watchlists.FirstOrDefault(w => w.Id == Id);
         }
 
+        //implementing the method
         public List<Watchlist> GetWatchlistFromPetId(int petId)
         {
             return _context.Watchlists.Where(w => w.PetId == petId).ToList();

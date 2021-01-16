@@ -8,20 +8,36 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AuthenticationandAuthorization.Services
 {
+    //Notification to interact with our database
     public class NotificationRepository : INotificationRepository
     {
         public AppDbContext _db { get;}
-        public NotificationRepository(AppDbContext db)
+        public IWatchlistRepository _watchlistRepository { get; }
+        public NotificationRepository(AppDbContext db, IWatchlistRepository watchlistRepository)
         {
-            _db = db; 
+            _db = db;
+            _watchlistRepository = watchlistRepository;
         }
 
-        public void Create(Notification notification)
+        //Create Notification
+        public void Create(Notification notification, int petId)
         {
             _db.Notifications.Add(notification);
             _db.SaveChanges();
 
             //TODO: Assign notification to users
+            //Get all pet id whose status has currentle been changed
+            var watchlists = _watchlistRepository.GetWatchlistFromPetId(petId);
+            foreach (var watchlist in watchlists)
+            {
+                //Assign notification notification to all user who has change the status of there pet list
+                var userNotification = new NotificationApplicationUser();
+                userNotification.ApplicationUserId = watchlist.UserId;
+                userNotification.NotificationId = notification.Id;
+
+                _db.UserNotifications.Add(userNotification);
+                _db.SaveChanges();
+            }
         }
 
         public List<NotificationApplicationUser> GetUserNotification(string userId)
@@ -33,6 +49,7 @@ namespace AuthenticationandAuthorization.Services
                                         .ToList();
         }
 
+        //Change Read Status for not read to read
         public void ReadNotification(int id)
         {
             var notification = _db.Notifications.FirstOrDefault(n => n.Id == id);

@@ -15,6 +15,8 @@ namespace AuthenticationandAuthorization.Services
             void Remove(Watchlist watchlist);
         //Check if already exist
             bool CheckIfAlreadyExists(string userId, int petId);
+
+            //Get list of watchlist
             List<Watchlist> GetWatchlistFromPetId(int petId);
         }
     
