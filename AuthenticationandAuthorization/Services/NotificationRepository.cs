@@ -40,7 +40,7 @@ namespace AuthenticationandAuthorization.Services
             }
         }
 
-        public List<NotificationApplicationUser> GetUserNotification(string userId)
+        public List<NotificationApplicationUser> GetUserNotifications(string userId)
         {
             //go to the db find all the Notif with userid equal to the past userid form our
             //notification application user tbale and perfom  join with Notif table user notfi
