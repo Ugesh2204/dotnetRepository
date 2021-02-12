@@ -123,7 +123,11 @@ namespace AuthenticationandAuthorization
 
             services.AddToastNotification();
 
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling =
+                    Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            }); ;
 
 
         }
@@ -178,7 +182,7 @@ namespace AuthenticationandAuthorization
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=AjaxModalCrud}/{action=Index}/{id?}");
             });
         }
     }
