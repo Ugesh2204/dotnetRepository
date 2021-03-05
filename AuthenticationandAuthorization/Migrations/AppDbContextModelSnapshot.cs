@@ -52,6 +52,8 @@ namespace AuthenticationandAuthorization.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
+                    b.Property<int?>("NewMessageMessageId");
+
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
 
@@ -72,6 +74,8 @@ namespace AuthenticationandAuthorization.Migrations
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NewMessageMessageId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -143,6 +147,42 @@ namespace AuthenticationandAuthorization.Migrations
                     b.HasIndex("FromUserId");
 
                     b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("AuthenticationandAuthorization.Models.NewMessage", b =>
+                {
+                    b.Property<int>("MessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("MessageStatus");
+
+                    b.Property<string>("MessageText");
+
+                    b.Property<string>("Subject");
+
+                    b.HasKey("MessageId");
+
+                    b.ToTable("NewMessages");
+                });
+
+            modelBuilder.Entity("AuthenticationandAuthorization.Models.NewMessageApplicationUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<int>("MessageId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("MessageId");
+
+                    b.ToTable("NewMessageApplicationUser");
                 });
 
             modelBuilder.Entity("AuthenticationandAuthorization.Models.Notification", b =>
@@ -238,7 +278,7 @@ namespace AuthenticationandAuthorization.Migrations
 
             modelBuilder.Entity("AuthenticationandAuthorization.Models.Student", b =>
                 {
-                    b.Property<int>("studentId")
+                    b.Property<int>("StudentId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -248,7 +288,7 @@ namespace AuthenticationandAuthorization.Migrations
 
                     b.Property<string>("Name");
 
-                    b.HasKey("studentId");
+                    b.HasKey("StudentId");
 
                     b.ToTable("Student");
                 });
@@ -446,6 +486,13 @@ namespace AuthenticationandAuthorization.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("AuthenticationandAuthorization.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("AuthenticationandAuthorization.Models.NewMessage")
+                        .WithMany("applicationUsers")
+                        .HasForeignKey("NewMessageMessageId");
+                });
+
             modelBuilder.Entity("AuthenticationandAuthorization.Models.Membership_Price", b =>
                 {
                     b.HasOne("AuthenticationandAuthorization.Models.Membership", "Membership")
@@ -459,6 +506,18 @@ namespace AuthenticationandAuthorization.Migrations
                     b.HasOne("AuthenticationandAuthorization.Models.ApplicationUser", "FromUser")
                         .WithMany("Messages")
                         .HasForeignKey("FromUserId");
+                });
+
+            modelBuilder.Entity("AuthenticationandAuthorization.Models.NewMessageApplicationUser", b =>
+                {
+                    b.HasOne("AuthenticationandAuthorization.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("NewMessageApplicationUsers")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("AuthenticationandAuthorization.Models.NewMessage", "NewMessage")
+                        .WithMany()
+                        .HasForeignKey("MessageId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("AuthenticationandAuthorization.Models.NotificationApplicationUser", b =>

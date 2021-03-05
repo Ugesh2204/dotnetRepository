@@ -38,6 +38,8 @@ namespace AuthenticationandAuthorization.Data
         public DbSet<Notification>Notifications { get; set; }
         public DbSet<NotificationApplicationUser>UserNotifications { get; set; }
 
+        public DbSet<NewMessage> NewMessages { get; set; }
+
         //a application user have 1 or more messages
         public DbSet<Message>Messages { get; set; }
 

@@ -31,6 +31,8 @@ namespace AuthenticationandAuthorization.Models
         //Notification table 
         public List<NotificationApplicationUser> NotificationApplicationUsers { get; set; }
 
+        public List<NewMessageApplicationUser>NewMessageApplicationUsers { get; set; }
+
     }
 
     public enum Gender

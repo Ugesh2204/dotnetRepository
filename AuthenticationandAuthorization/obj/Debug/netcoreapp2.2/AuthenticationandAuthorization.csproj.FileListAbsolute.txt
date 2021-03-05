@@ -69,3 +69,4 @@ C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\Authentication
 C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\obj\Debug\netcoreapp2.2\Razor\Views\Pet\New.g.cshtml.cs
 C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\obj\Debug\netcoreapp2.2\Razor\Views\Watchlist\Index.g.cshtml.cs
 C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\obj\Debug\netcoreapp2.2\Razor\Views\Pet\MyPets.g.cshtml.cs
+C:\Users\Ugesh\Desktop\dotcore2020\AuthenticationandAuthorization\AuthenticationandAuthorization\obj\Debug\netcoreapp2.2\Razor\Views\NewNotificationwithJs\Index.g.cshtml.cs

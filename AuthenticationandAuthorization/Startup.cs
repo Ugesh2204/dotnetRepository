@@ -182,7 +182,7 @@ namespace AuthenticationandAuthorization
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=AjaxModalCrud}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
