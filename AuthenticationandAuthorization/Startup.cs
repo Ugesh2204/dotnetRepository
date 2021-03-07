@@ -73,6 +73,7 @@ namespace AuthenticationandAuthorization
             services.AddTransient<IWatchlistRepository, WatchlistRepository>();
 
             services.AddTransient<INotificationRepository, NotificationRepository>();
+            services.AddTransient<IRapidNotification, RapidNotification>();
 
             //Password settings
 

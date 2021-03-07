@@ -37,6 +37,7 @@ namespace AuthenticationandAuthorization.Data
         public DbSet<Watchlist> Watchlists { get; set; }
         public DbSet<Notification>Notifications { get; set; }
         public DbSet<NotificationApplicationUser>UserNotifications { get; set; }
+        public DbSet<NewMessageApplicationUser> UserMessageNotif { get; set; }
 
         public DbSet<NewMessage> NewMessages { get; set; }
 
